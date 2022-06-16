@@ -2,10 +2,16 @@ namespace Library
 {
     public class Probability
     {
+
         public static Dictionary<int, string> selectedCards = new Dictionary<int, string>();
         public static List<string> posiciones = new List<string>();
         /*
         public static float Factorial(int n)
+
+        public static List<string> selectedCards = new List<string>();
+
+        public static int Factorial(int n)
+
         {
             {
                 int fact = 1;
