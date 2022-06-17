@@ -3,15 +3,14 @@ namespace Library
     public class Probability
     {
 
-        public static Dictionary<int, string> selectedCards = new Dictionary<int, string>();
+        //public static Dictionary<int, string> selectedCards = new Dictionary<int, string>();
         public static List<string> posiciones = new List<string>();
-        /*
-        public static float Factorial(int n)
+        
+        //public static float Factorial(int n)
 
         public static List<string> selectedCards = new List<string>();
-
+        /*
         public static int Factorial(int n)
-
         {
             {
                 int fact = 1;
@@ -57,7 +56,7 @@ namespace Library
             //float segundaSuma = 2*((Combinacion(26,5)/Combinacion(52,5)));
 
             double colorProbability = 2 * (((Combinacion(12, 4) * 38) + Combinacion(12, 5)) + Combinacion(26, 5));
-            colorProbability = colorProbability*(Combinacion(52,5));
+            //colorProbability = colorProbability*(Combinacion(52,5));
 
             //float colorProbability = primeraSuma + segundaSuma;
 

@@ -159,4 +159,11 @@ public class Card
         AllCards.Add(cartasAltasTrebol);
     }
 
+
+
+    public static void DeletedCards(Dictionary<string, string> cartaborrada)
+    {
+        AllCards.Remove(cartaborrada);
+    }
+
 }
