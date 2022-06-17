@@ -30,6 +30,7 @@ namespace Library
             if (carta1Num <= 52)
             {
                 Probability.selectedCards.Add(indexCards[carta1Num]);
+                //Borrar cartas
             }
             else
             {
@@ -38,7 +39,7 @@ namespace Library
 
             }
 
-            /*
+            
 
             Console.WriteLine("Selecciona la segunda carta");
             int carta2Num = int.Parse(Console.ReadLine());
@@ -46,6 +47,9 @@ namespace Library
             if (carta2Num <= 52)
             {
                 Probability.selectedCards.Add(indexCards[carta2Num]);
+                Console.WriteLine("Las cartas seleccionadas son: " + Probability.selectedCards[0] + 
+                    " y la otra carta es "+ Probability.selectedCards[1]);
+                //Card.DeletedCards();
 
             }
             else
@@ -53,7 +57,7 @@ namespace Library
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();
             }
-            */
+            
         }
     }
 }
