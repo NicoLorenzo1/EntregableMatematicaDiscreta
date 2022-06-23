@@ -2,75 +2,49 @@ using System.Collections;
 
 namespace Library
 {
-    public static class Menu
+    public class Menu
     {
         public static void ShowMenu()
         {
             int n = 0;
-            Dictionary<int, string> indexCards = new Dictionary<int, string>();
 
             Console.WriteLine("Estas son las cartas disponibles, elige dos ingresando el número que se encuentra delante:\n");
-            foreach (var dicc in Card.AllCards)
+            foreach (var card in Card.allCards)
             {
-                foreach (var card in dicc)
-                {
-                    n++;
-                    Console.WriteLine($"{n}- [{card.Key} {card.Value}]\n");
-                    //indexCards.Add(n, card.Key + " " + card.Value);
-                }
+                n++;
+                Console.WriteLine($"{n}- {card}\n");
             }
+
+            //Enviar la primer carta a elegir
             Console.WriteLine("Selecciona la primer carta");
             string num = Console.ReadLine();
 
             int carta1Num = int.Parse(num);
 
-            //Console.WriteLine(indexCards[carta1Num]);
-
-            if (carta1Num <= 52)
-            {
-                Probability.selectedCards.Add(indexCards[carta1Num]);
-                
-                //Borrar cartas
-            }
-            else
+            if (carta1Num > 52)
             {
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();
-
             }
 
+            //Enviar la segunda carta a elegir
             Console.WriteLine("Selecciona la segunda carta");
             int carta2Num = int.Parse(Console.ReadLine());
 
-            if (carta2Num <= 52)
-            {
-                Probability.selectedCards.Add(indexCards[carta2Num]);
-                Console.WriteLine("Las cartas seleccionadas son: " + Probability.selectedCards[0] +
-                    " y la otra carta es " + Probability.selectedCards[1]);
-                //Card.DeletedCards();
-                String[] dato = Probability.selectedCards[0].Split(" ");
-
-                foreach (var dicc in Card.AllCards)
-                {
-                    foreach (var card in dicc)
-                    {
-                        if(card.Key == dato[0] && card.Value == dato[1])
-                        {
-                            //Card.AllCards.Remove();
-                            Console.WriteLine("llegue");
-                        }
-                        
-                    }
-                }
-                
-
-            }
-            else
+            if (carta2Num > 52)
             {
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();
             }
 
+            //Asigno cuales son las cartas que quiero remover a partir de sus posiciones.
+            string selectedCard1 = Card.allCards.ElementAt(carta1Num - 1);
+            string selectedCard2 = Card.allCards.ElementAt(carta2Num - 1);
+
+            Card.DeletedSelectedCards(selectedCard1);
+            Card.DeletedSelectedCards(selectedCard1);
+
+            Probability.GenerateStatics(selectedCard1, selectedCard2);
         }
     }
 }
