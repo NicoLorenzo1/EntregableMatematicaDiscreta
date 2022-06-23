@@ -9,7 +9,6 @@ namespace Library
             int n = 0;
             Dictionary<int, string> indexCards = new Dictionary<int, string>();
 
-
             Console.WriteLine("Estas son las cartas disponibles, elige dos ingresando el número que se encuentra delante:\n");
             foreach (var dicc in Card.AllCards)
             {
@@ -17,7 +16,7 @@ namespace Library
                 {
                     n++;
                     Console.WriteLine($"{n}- [{card.Key} {card.Value}]\n");
-                    indexCards.Add(n, card.Key + " " + card.Value);
+                    //indexCards.Add(n, card.Key + " " + card.Value);
                 }
             }
             Console.WriteLine("Selecciona la primer carta");
@@ -30,6 +29,7 @@ namespace Library
             if (carta1Num <= 52)
             {
                 Probability.selectedCards.Add(indexCards[carta1Num]);
+                
                 //Borrar cartas
             }
             else
@@ -39,16 +39,14 @@ namespace Library
 
             }
 
-            
-
             Console.WriteLine("Selecciona la segunda carta");
             int carta2Num = int.Parse(Console.ReadLine());
 
             if (carta2Num <= 52)
             {
                 Probability.selectedCards.Add(indexCards[carta2Num]);
-                Console.WriteLine("Las cartas seleccionadas son: " + Probability.selectedCards[0] + 
-                    " y la otra carta es "+ Probability.selectedCards[1]);
+                Console.WriteLine("Las cartas seleccionadas son: " + Probability.selectedCards[0] +
+                    " y la otra carta es " + Probability.selectedCards[1]);
                 //Card.DeletedCards();
 
             }
@@ -57,7 +55,7 @@ namespace Library
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();
             }
-            
+
         }
     }
 }
