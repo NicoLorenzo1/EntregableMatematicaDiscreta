@@ -39,17 +39,30 @@ namespace Library
             string[] splitCard2 = cardToCalculate2.Split(" ");
 
             string paloC1 = splitCard1[1];
-            string paloC2 = splitCard1[1];
+            string paloC2 = splitCard2[1]; 
+            int cartasRestantes = 38; // Por ahora es 38 ya que no se conoce bien su funcionamiento, discutir profe
+            int palosRestantes = 1;
 
 
             foreach (var element in Card.allCards)
             {
-                if (element.Contains(paloC1) || element.Contains(paloC2))
+                if(paloC1 != paloC2)
                 {
-                    favCases++;
+                    if (element.Contains(paloC1) /*|| element.Contains(paloC2)*/)
+                    {
+                    favCases++; // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
+                    Console.WriteLine(favCases);
+                    palosRestantes = 2;
+                    }
+                }
+                else
+                {
+                    favCases = 11;
+                    palosRestantes = 3;
                 }
             }
-            double colorProbability = 2 * (((Combinacion(favCases, 4) * 38) + Combinacion(favCases, 5)) + Combinacion(26, 5));
+            //double colorProbability = 2 * ((((Combinacion(favCases, 4) * 38) + Combinacion(favCases, 5)) + Combinacion(26, 5)en teoria esta cambia si son iguales)/Combinacion(50, 5));
+            double colorProbability = 2 * ((Combinacion(favCases, 4) * cartasRestantes) + Combinacion(favCases, 5))/Combinacion(50, 5) + palosRestantes * Combinacion(26, 5)/Combinacion(50, 5);
             return colorProbability;
         }
 
