@@ -48,7 +48,7 @@ namespace Library
             {
                 if(paloC1 != paloC2)
                 {
-                    if (element.Contains(paloC1) /*|| element.Contains(paloC2)*/)
+                    if (element.Contains(paloC1) /*|| element.Contains(paloC2)*/) // Es lo mismo poner un solo palo porque la cuenta que se hace se multiplican por 2 los valores, si se ponen los dos palos se multiplicarian por 4 
                     {
                     favCases++; // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
                     Console.WriteLine(favCases);
