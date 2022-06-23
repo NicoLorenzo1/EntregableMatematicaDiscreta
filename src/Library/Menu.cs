@@ -50,6 +50,21 @@ namespace Library
                 Console.WriteLine("Las cartas seleccionadas son: " + Probability.selectedCards[0] + 
                     " y la otra carta es "+ Probability.selectedCards[1]);
                 //Card.DeletedCards();
+                String[] dato = Probability.selectedCards[0].Split(" ");
+
+                foreach (var dicc in Card.AllCards)
+                {
+                    foreach (var card in dicc)
+                    {
+                        if(card.Key == dato[0] && card.Value == dato[1])
+                        {
+                            //Card.AllCards.Remove();
+                            Console.WriteLine("llegue");
+                        }
+                        
+                    }
+                }
+                
 
             }
             else
