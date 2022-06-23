@@ -1,3 +1,3 @@
 # EntregableMatematicaDiscreta
 
-![img](https://plataformasinc.es/wp-content/uploads/2020/10/Matema%CC%81ticas-en-las-apuestas-deportivas-1.jpg)
+![img](https://www.seminolehardrockhollywood.com/-/media/project/shrss/sga/casinos/hard-rock/hollywood/casino/poker/poker-cards-746x420.jpg?rev=993bcc69da874916bb7e9af2713c100e)
