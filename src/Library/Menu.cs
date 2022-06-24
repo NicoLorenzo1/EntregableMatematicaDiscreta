@@ -21,7 +21,7 @@ namespace Library
 
             int carta1Num = int.Parse(num);
 
-            if (carta1Num > 52)
+            if (carta1Num > 52 && carta1Num < 0)
             {
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();
@@ -31,7 +31,7 @@ namespace Library
             Console.WriteLine("Selecciona la segunda carta");
             int carta2Num = int.Parse(Console.ReadLine());
 
-            if (carta2Num > 52)
+            if ( carta2Num > 52  && carta2Num < 0)
             {
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();

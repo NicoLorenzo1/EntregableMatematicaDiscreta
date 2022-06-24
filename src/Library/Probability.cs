@@ -42,6 +42,7 @@ namespace Library
             string paloC2 = splitCard2[1]; 
             int cartasRestantes = 38; // Por ahora es 38 ya que no se conoce bien su funcionamiento, discutir profe
             int palosRestantes = 1;
+            int palosDupla = 2;
 
 
             foreach (var element in Card.allCards)
@@ -50,19 +51,19 @@ namespace Library
                 {
                     if (element.Contains(paloC1) /*|| element.Contains(paloC2)*/) // Es lo mismo poner un solo palo porque la cuenta que se hace se multiplican por 2 los valores, si se ponen los dos palos se multiplicarian por 4 
                     {
-                    favCases++; // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
-                    Console.WriteLine(favCases);
-                    palosRestantes = 2;
+                        favCases++; // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
+                        Console.WriteLine(favCases);
+                        palosRestantes = 2;
                     }
                 }
                 else
                 {
                     favCases = 11;
                     palosRestantes = 3;
+                    palosDupla = 1;
                 }
             }
-            //double colorProbability = 2 * ((((Combinacion(favCases, 4) * 38) + Combinacion(favCases, 5)) + Combinacion(26, 5)en teoria esta cambia si son iguales)/Combinacion(50, 5));
-            double colorProbability = 2 * ((Combinacion(favCases, 4) * cartasRestantes) + Combinacion(favCases, 5))/Combinacion(50, 5) + palosRestantes * Combinacion(26, 5)/Combinacion(50, 5);
+            double colorProbability = (palosDupla * ((Combinacion(favCases, 4) * cartasRestantes) + Combinacion(favCases, 5))/Combinacion(50, 5) + palosRestantes * Combinacion(26, 5)/Combinacion(50, 5))*100;
             return colorProbability;
         }
 
@@ -96,7 +97,7 @@ namespace Library
             double colorProbability = ColorProbability(card1, card2);
             double pokerProbability = PokerProbability(card1, card2);
             double escaleraProbability = EscaleraProbability(card1,card2);
-            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} \n Poker: {pokerProbability} \n  Escalera: {escaleraProbability}");
+            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} % \n Poker: {pokerProbability} % \n  Escalera: {escaleraProbability} % ");
         }
 
         public static double EscaleraProbability(string cardToCalculate1, string cardToCalculate2)
