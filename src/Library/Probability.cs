@@ -26,7 +26,7 @@ namespace Library
         //Combinaciones donde numA es el numero del total y numB en cuanto quiero tomar las variaciones.
         public static double Combinacion(int numA, int numB)
         {
-            double result = (Factorial(numA) / ((Factorial(numA - numB) * Factorial(numB))));
+            double result = Factorial(numA) / (Factorial(numA - numB) * Factorial(numB));
             return result;
         }
 
@@ -52,7 +52,7 @@ namespace Library
                     if (element.Contains(paloC1) /*|| element.Contains(paloC2)*/) // Es lo mismo poner un solo palo porque la cuenta que se hace se multiplican por 2 los valores, si se ponen los dos palos se multiplicarian por 4 
                     {
                         favCases++; // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
-                        Console.WriteLine(favCases);
+                        //Console.WriteLine(favCases);
                         palosRestantes = 2;
                     }
                 }
@@ -97,7 +97,27 @@ namespace Library
             double colorProbability = ColorProbability(card1, card2);
             double pokerProbability = PokerProbability(card1, card2);
             double escaleraProbability = EscaleraProbability(card1,card2);
-            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} % \n Poker: {pokerProbability} % \n  Escalera: {escaleraProbability} % ");
+            double fullProbability = FullProbability(card1,card2);
+            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} % \n Poker: {pokerProbability} % \n  Escalera: {escaleraProbability} %  \n  Full {fullProbability}");
+        }
+
+
+        public static double FullProbability(string cardToCalculate1, string cardToCalculate2)
+        {
+            
+            string[] splitCard1 = cardToCalculate1.Split(" ");
+            string[] splitCard2 = cardToCalculate2.Split(" ");
+            string numC1 = splitCard1[0];
+            string numC2 = splitCard2[0];
+            double resultFull = 0;
+            //Esta es la cuenta para cuando las dos primeras cartas tienen distinto valor
+            if (numC1 != numC2)
+            {
+                resultFull = (2*(Combinacion(3,2)*Combinacion(3,1)*Combinacion(44,2)) + (Combinacion(3,2) * Combinacion(3,2) * Combinacion(44,1)))/Combinacion(50,2) + (11 * Combinacion(4,3) * Combinacion(4,2))/Combinacion(50,5);
+            }
+            
+
+            return resultFull;
         }
 
         public static double EscaleraProbability(string cardToCalculate1, string cardToCalculate2)
