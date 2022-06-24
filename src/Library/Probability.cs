@@ -95,7 +95,35 @@ namespace Library
         {
             double colorProbability = ColorProbability(card1, card2);
             double pokerProbability = PokerProbability(card1, card2);
-            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} \n Poker: {pokerProbability}");
+            double escaleraProbability = EscaleraProbability(card1,card2);
+            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} \n Poker: {pokerProbability} \n  Escalera: {escaleraProbability}");
+        }
+
+        public static double EscaleraProbability(string cardToCalculate1, string cardToCalculate2)
+        {
+            
+            List<string> escaleraReal = new List<string>()
+            {
+                "10","K","Q","J","A"
+            };
+            double escaleraProbability = 0;
+            string[] splitCard1 = cardToCalculate1.Split(" ");
+            string[] splitCard2 = cardToCalculate2.Split(" ");
+            string numC1 = splitCard1[0];
+            string numC2 = splitCard2[0];
+
+
+
+            foreach (var card in escaleraReal)
+            {
+                if(numC1 != card && numC2 != card)
+                {
+                    escaleraProbability = 4/ Combinacion(50,2)*100;
+                }
+                
+            }
+            return escaleraProbability;
+        
         }
 
     }
