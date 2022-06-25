@@ -40,30 +40,24 @@ namespace Library
 
             string paloC1 = splitCard1[1];
             string paloC2 = splitCard2[1]; 
-            int cartasRestantes = 38; // Por ahora es 38 ya que no se conoce bien su funcionamiento, discutir profe
-            int palosRestantes = 1;
-            int palosDupla = 2;
+            double colorProbability = 0;
 
 
-            foreach (var element in Card.allCards)
+            
+            if(paloC1 != paloC2)
             {
-                if(paloC1 != paloC2)
-                {
-                    if (element.Contains(paloC1) /*|| element.Contains(paloC2)*/) // Es lo mismo poner un solo palo porque la cuenta que se hace se multiplican por 2 los valores, si se ponen los dos palos se multiplicarian por 4 
-                    {
-                        favCases++; // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
-                        //Console.WriteLine(favCases);
-                        palosRestantes = 2;
-                    }
-                }
-                else
-                {
-                    favCases = 11;
-                    palosRestantes = 3;
-                    palosDupla = 1;
-                }
+                
+                // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
+                //Console.WriteLine(favCases);
+                colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
+                     
             }
-            double colorProbability = (palosDupla * ((Combinacion(favCases, 4) * cartasRestantes) + Combinacion(favCases, 5))/Combinacion(50, 5) + palosRestantes * Combinacion(26, 5)/Combinacion(50, 5))*100;
+            else
+            {
+                colorProbability = (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) + (Combinacion(11,5)/Combinacion(50,5))*100;
+            }
+            
+           
             return colorProbability;
         }
 
@@ -134,12 +128,27 @@ namespace Library
             string numC2 = splitCard2[0];
 
 
-
+            //Combinacion(47,2)/Combinacion(50,2) con las dos cartas que sirven 
             foreach (var card in escaleraReal)
             {
                 if(numC1 != card && numC2 != card)
                 {
                     escaleraProbability = 4/ Combinacion(50,2)*100;
+                }
+                else if(numC1 == card && numC2 != card)
+                {
+                    escaleraProbability = 46/Combinacion(50,5) * 100; //para cuando tenemos una que sirve y otra no.
+
+                }
+                else if(numC1 != card && numC2 == card)
+                {
+                    escaleraProbability = 46/Combinacion(50,5) * 100;
+
+                }
+                else
+                {
+                    escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
+
                 }
                 
             }
