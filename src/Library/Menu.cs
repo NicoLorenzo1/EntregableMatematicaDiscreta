@@ -17,14 +17,14 @@ namespace Library
 
             //Enviar la primer carta a elegir
             Console.WriteLine("Selecciona la primer carta");
-            string num = "";
-            int carta1Num = 0;
+           
+            
             
            
         
-            num = Console.ReadLine();
-            carta1Num = int.Parse(num);
-            if (carta1Num > 52 || carta1Num < 0)
+            string num = Console.ReadLine();
+            int carta1Num = int.Parse(num);
+            if (carta1Num > 52 || carta1Num < 0 || carta1Num == 0)
             {
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();        
@@ -38,7 +38,7 @@ namespace Library
            
             int carta2Num = int.Parse(Console.ReadLine());
 
-            if ( carta2Num > 52  || carta2Num < 0)
+            if ( carta2Num > 52  || carta2Num < 0 || carta2Num == 0)
             {
                 Console.WriteLine("No tenemos una carta disponible para ese numero");
                 ShowMenu();
