@@ -74,7 +74,6 @@ namespace Library
             }
             
            
-            return colorProbability;
         }
 
         //Metodo que se encarga de calcular la probabilidad de que salga poker, separa el string recibido y a partir de lo que busca (numeros en este caso) calcula las probabilidades.
