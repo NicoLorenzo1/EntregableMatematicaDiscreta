@@ -76,7 +76,7 @@ namespace Library
             {
                 if (element.Contains(numC1) || element.Contains(numC2))
                 {
-                    favCases++;
+                    favCases = 12;
                 }
             }
 
@@ -109,6 +109,10 @@ namespace Library
             {
                 resultFull = (2*(Combinacion(3,2)*Combinacion(3,1)*Combinacion(44,2)) + (Combinacion(3,2) * Combinacion(3,2) * Combinacion(44,1)))/Combinacion(50,2) + (11 * Combinacion(4,3) * Combinacion(4,2))/Combinacion(50,5);
             }
+            else
+            {
+                //cuando son iguales
+            }
             
 
             return resultFull;
@@ -126,9 +130,9 @@ namespace Library
             string[] splitCard2 = cardToCalculate2.Split(" ");
             string numC1 = splitCard1[0];
             string numC2 = splitCard2[0];
-            string paloC1 = splitCard1[1];
-            string paloC2 = splitCard2[1];
-
+            //string paloC1 = splitCard1[1];
+            //string paloC2 = splitCard2[1];
+            /*
             bool mismoPalo;
             if(paloC1 == paloC2) // realizo esto para saber si son del mismo palo
             {
@@ -138,6 +142,7 @@ namespace Library
             {
                 mismoPalo = false; 
             }
+            */
             int ni = 0; // ni = no iguales para saber que los numeros de input no son iguales
             int s1 = 0; // s1 = para saber que solo el primero es igual
             int s2 = 0; // s2 = para saber que el segundo es igual
@@ -184,6 +189,10 @@ namespace Library
                     {
                         escaleraProbability = 46/Combinacion(50,5) * 100;
                     }
+                }
+                else if(numC1 == card && numC2 == card)
+                {
+                    return escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
                 }
             }
             return escaleraProbability;
