@@ -33,7 +33,7 @@ namespace Library
         //Metodo que se encarga de calcular la probabilidad de color a partir de las dos cartas que recibe por parametro.
         public static double ColorProbability(string cardToCalculate1, string cardToCalculate2)
         {
-            int favCases = 0;
+            
 
             string[] splitCard1 = cardToCalculate1.Split(" ");
             string[] splitCard2 = cardToCalculate2.Split(" ");
@@ -126,31 +126,65 @@ namespace Library
             string[] splitCard2 = cardToCalculate2.Split(" ");
             string numC1 = splitCard1[0];
             string numC2 = splitCard2[0];
+            string paloC1 = splitCard1[1];
+            string paloC2 = splitCard2[1];
 
+            bool mismoPalo;
+            if(paloC1 == paloC2) // realizo esto para saber si son del mismo palo
+            {
+                mismoPalo = true;
+            }
+            else
+            {
+                mismoPalo = false; 
+            }
+            int ni = 0; // ni = no iguales para saber que los numeros de input no son iguales
+            int s1 = 0; // s1 = para saber que solo el primero es igual
+            int s2 = 0; // s2 = para saber que el segundo es igual
+            int di = 0; // di = dos iguales, para saber que los dos pertenecientes a la escalera
+
+            //Primero hago un foreach para saber si las dos cartas de inicio sirven para hacer una escalera,
+            // si no son asi se sigue el codigo al otro foreach
+        
+            foreach (var card in escaleraReal)
+            {
+                if(numC1 == card || numC2 == card)
+                {
+                    di ++;
+                    if (di == 2)
+                    {
+                        return escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
+                    }
+                }
+            }
 
             //Combinacion(47,2)/Combinacion(50,2) con las dos cartas que sirven 
             foreach (var card in escaleraReal)
             {
                 if(numC1 != card && numC2 != card)
                 {
-                    escaleraProbability = 4/ Combinacion(50,2)*100;
+                    ni ++;
+                    if(ni == 5)
+                    {
+                        escaleraProbability = 4/ Combinacion(50,2)*100; // para cuando los dos no sirven
+                    }  
                 }
                 else if(numC1 == card && numC2 != card)
                 {
-                    escaleraProbability = 46/Combinacion(50,5) * 100; //para cuando tenemos una que sirve y otra no.
-
+                    s1 ++;
+                    if(s1 == 1)
+                    {
+                        escaleraProbability = 46/Combinacion(50,5) * 100; //para cuando tenemos una que sirve y otra no.
+                    }
                 }
                 else if(numC1 != card && numC2 == card)
                 {
-                    escaleraProbability = 46/Combinacion(50,5) * 100;
-
+                    s2 ++;
+                    if(s2 == 1)
+                    {
+                        escaleraProbability = 46/Combinacion(50,5) * 100;
+                    }
                 }
-                else
-                {
-                    escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
-
-                }
-                
             }
             return escaleraProbability;
         
