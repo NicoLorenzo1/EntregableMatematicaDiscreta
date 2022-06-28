@@ -22,12 +22,14 @@ namespace Library
         
             
             string num = Console.ReadLine();
+        
             
 
             int carta1Num = 0;
             if (num != null)
             {
                 carta1Num = int.Parse(num);
+                
 
             }
             
@@ -45,7 +47,6 @@ namespace Library
            
            
             int carta2Num = int.Parse(Console.ReadLine());
-            //int carta2Num = 35;
             // chequea que el numero que elige el usuario no sea mayor a 52 y menor a 0
             if ( carta2Num > 52  || carta2Num < 0 || carta2Num == 0)
             {

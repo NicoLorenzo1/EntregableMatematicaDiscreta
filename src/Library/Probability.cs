@@ -49,28 +49,15 @@ namespace Library
                 
                 // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
                 //Console.WriteLine(favCases);
-                colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
-                string color = colorProbability.ToString();
-                string colorNew ="";
-                for (int i = 0; i < 5; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
-                {
-                    colorNew +=color[i];
-                }
-                colorProbability = Convert.ToDouble(colorNew);
-                return colorProbability;
+                //colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
+                return ReducirNumero((2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100);
                      
             }
             else
             {
                 colorProbability = (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) + (Combinacion(11,5)/Combinacion(50,5))*100;
-                string color = colorProbability.ToString();
-                string colorNew ="";
-                for (int i = 0; i < 5; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
-                {
-                    colorNew +=color[i];
-                }
-                colorProbability = Convert.ToDouble(colorNew);
-                return colorProbability;
+                
+                return ReducirNumero(colorProbability);
             }
             
            
@@ -123,22 +110,15 @@ namespace Library
             if (numC1 != numC2)
             {
                 resultFull = (2*(Combinacion(3,2)*Combinacion(3,1)*Combinacion(44,2)) + (Combinacion(3,2) * Combinacion(3,2) * Combinacion(44,1)))/Combinacion(50,2) + (11 * Combinacion(4,3) * Combinacion(4,2))/Combinacion(50,5);
-                string full = resultFull.ToString();
-                string fullNew ="";
-                for (int i = 0; i < 5; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
-                {
-                    fullNew +=full[i];
-                }
-                resultFull = Convert.ToDouble(fullNew);
-                return resultFull;
+                
+                return ReducirNumero(resultFull);
             }
             else
             {
-                //cuando son iguales
+                resultFull = ((11*Combinacion(4,3) * Combinacion(4,2))/Combinacion(50,5) + (Combinacion(2,1) * Combinacion(12,2)*4 * Combinacion(47,2))/Combinacion(50,5) + (Combinacion(12,3)*Combinacion(47,2))/ Combinacion(50,5))*100;
+                return ReducirNumero(resultFull);
             }
-            
-
-            return resultFull;
+        
         }
 
         public static double EscaleraProbability(string cardToCalculate1, string cardToCalculate2)
@@ -182,16 +162,7 @@ namespace Library
                     if (di == 2)
                     {
                         escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
-                        string escalera = escaleraProbability.ToString();
-                        string escaleraNew ="";
-                        for (int i = 0; i < 5; i++)
-                        {
-                            escaleraNew +=escalera[i];
-
-                        }
-                        escaleraProbability = Convert.ToDouble(escaleraNew);
-
-                        return escaleraProbability;
+                        return ReducirNumero(escaleraProbability);
                     }
                 }
             }
@@ -205,14 +176,7 @@ namespace Library
                     if(ni == 5)
                     {
                         escaleraProbability = 4/ Combinacion(50,2)*100; // para cuando los dos no sirven
-                        string escalera = escaleraProbability.ToString();
-                        string escaleraNew ="";
-                        for (int i = 0; i < 5; i++)
-                        {
-                            escaleraNew +=escalera[i];
-
-                        }
-                        escaleraProbability = Convert.ToDouble(escaleraNew);
+                        return ReducirNumero(escaleraProbability);
                     }  
                 }
                 else if(numC1 == card && numC2 != card)
@@ -221,14 +185,7 @@ namespace Library
                     if(s1 == 1)
                     {
                         escaleraProbability = 46/Combinacion(50,5) * 100; //para cuando tenemos una que sirve y otra no.
-                        string escalera = escaleraProbability.ToString();
-                        string escaleraNew ="";
-                        for (int i = 0; i < 5; i++)
-                        {
-                            escaleraNew +=escalera[i];
-
-                        }
-                        escaleraProbability = Convert.ToDouble(escaleraNew);
+                        return ReducirNumero(escaleraProbability);
                     }
                 }
                 else if(numC1 != card && numC2 == card)
@@ -237,33 +194,30 @@ namespace Library
                     if(s2 == 1)
                     {
                         escaleraProbability = 46/Combinacion(50,5) * 100;
-                        string escalera = escaleraProbability.ToString();
-                        string escaleraNew ="";
-                        for (int i = 0; i < 5; i++)
-                        {
-                            escaleraNew +=escalera[i];
-
-                        }
-                        escaleraProbability = Convert.ToDouble(escaleraNew);
+                        return ReducirNumero(escaleraProbability);
                     }
                 }
                 else if(numC1 == card && numC2 == card)
                 {
-                    escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
-                    string escalera = escaleraProbability.ToString();
-                    string escaleraNew ="";
-                    for (int i = 0; i < 5; i++)
-                    {
-                        escaleraNew +=escalera[i];
-
-                    }
-                    escaleraProbability = Convert.ToDouble(escaleraNew);
-                    return escaleraProbability;
+                    escaleraProbability = Combinacion(47,2)/Combinacion(50,5)*100;
+                    return ReducirNumero(escaleraProbability);
                 }
             }
-            return escaleraProbability;
+            return ReducirNumero(escaleraProbability);;
         
         }
 
+        public static double ReducirNumero(double numero)
+        {
+            string numeroStr = numero.ToString();
+            string strNew ="";
+            
+            for (int i = 0; i < 5; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
+            {
+                strNew +=numeroStr[i];
+            }
+            double result = Convert.ToDouble(strNew);
+            return result;
+        }
     }
 }
