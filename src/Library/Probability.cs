@@ -4,10 +4,8 @@ namespace Library
     {
 
         public static int count;
-        //public static Dictionary<int, string> selectedCards = new Dictionary<int, string>();
         public static List<string> posiciones = new List<string>();
 
-        //public static float Factorial(int n)
 
         public static List<string> selectedCards = new List<string>();
 
@@ -58,38 +56,14 @@ namespace Library
             }
         }
 
-        //Metodo que se encarga de calcular la probabilidad de que salga poker, separa el string recibido y a partir de lo que busca (numeros en este caso) calcula las probabilidades.
-        public static double PokerProbability(string cardToCalculate1, string cardToCalculate2)
-        {
-            int favCases = 0;
-
-            string[] splitCard1 = cardToCalculate1.Split(" ");
-            string[] splitCard2 = cardToCalculate2.Split(" ");
-            string numC1 = splitCard1[0];
-            string numC2 = splitCard2[0];
-
-
-            foreach (var element in Card.allCards)
-            {
-                if (element.Contains(numC1) || element.Contains(numC2))
-                {
-                    favCases = 8;
-                }
-            }
-
-            double pokerProbability = Combinacion(favCases, 4);
-            return pokerProbability;
-        }
-
         //Metodo que se encarga de verificar cual es la cantidad de casos que nos sirven dependiendo de la carta que le pasemos. 
         //verifica cuantas cartas con el mismo palo quedan en el mazo
         public static void GenerateStatics(string card1, string card2)
         {
             double colorProbability = ColorProbability(card1, card2);
-            double pokerProbability = PokerProbability(card1, card2);
             double escaleraProbability = EscaleraProbability(card1,card2);
             double fullProbability = FullProbability(card1,card2);
-            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} % \n Poker: {pokerProbability} % \n  Escalera: {escaleraProbability} %  \n  Full {fullProbability}");
+            Console.WriteLine($"Probabilidad de obtener juegos con las cartas [{card1}] y [{card2}] son: \n Color: {colorProbability} % \n  Escalera: {escaleraProbability} %  \n  Full {fullProbability}");
         }
 
 
@@ -168,7 +142,6 @@ namespace Library
                 }
             }
 
-            //Combinacion(47,2)/Combinacion(50,2) con las dos cartas que sirven 
             foreach (var card in escaleraReal)
             {
                 if(numC1 != card && numC2 != card)
@@ -176,7 +149,7 @@ namespace Library
                     ni ++;
                     if(ni == 5)
                     {
-                        escaleraProbability = (4/ Combinacion(50,5))*100; // para cuando los dos primeros no sirven ESTA PERFECT ANO TOCAR
+                        escaleraProbability = (4/ Combinacion(50,5))*100; // para cuando los dos primeros no sirven 
                         return ReducirNumero(escaleraProbability);
                     }  
                 }
@@ -201,7 +174,7 @@ namespace Library
             string numeroStr = numero.ToString();
             string strNew ="";
             
-            for (int i = 0; i < 7; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
+            for (int i = 0; i < 7; i++)  // todo esto del for es para escribir la probabilidad 
             {
                 strNew +=numeroStr[i];
             }

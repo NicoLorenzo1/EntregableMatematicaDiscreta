@@ -17,27 +17,20 @@ namespace Library
 
             //Enviar la primer carta a elegir
             Console.WriteLine("Selecciona la primer carta");
-           
-            
-        
             
             string num = Console.ReadLine();
-            //string num = "51";
-
-            
-        
-            
+          
 
             int carta1Num = 51;
             if (num != null)
             {
                 carta1Num = int.Parse(num);
-                //carta1Num = 51;
+              
                 
 
             }
             
-            //int carta1Num = 51;
+           
             // chequea que el numero que elige el usuario no sea mayor a 52 y menor a 0
             if (carta1Num > 52 || carta1Num < 0 || carta1Num == 0)
             {
@@ -49,9 +42,8 @@ namespace Library
             //Enviar la segunda carta a elegir
             Console.WriteLine("Selecciona la segunda carta");
            
-           
             int carta2Num = int.Parse(Console.ReadLine());
-            //int carta2Num = 38;
+            
             // chequea que el numero que elige el usuario no sea mayor a 52 y menor a 0
             if ( carta2Num > 52  || carta2Num < 0 || carta2Num == 0)
             {
