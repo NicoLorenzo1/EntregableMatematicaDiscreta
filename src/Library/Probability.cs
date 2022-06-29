@@ -47,17 +47,15 @@ namespace Library
             if(paloC1 != paloC2)
             {
                 
-                // En teoria si mis calculos no me fallan deben ser siempre 12 a no ser que se repita el mismo palo 
-                //Console.WriteLine(favCases);
-                //colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
-                return ReducirNumero((2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100);
+                colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
+                return ReducirNumero(colorProbability);
                      
             }
             else
             {
-                colorProbability = (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) + (Combinacion(11,5)/Combinacion(50,5))*100;
+                colorProbability = ( 2 * (Combinacion(26, 5) / Combinacion(50, 5)) + (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) +( Combinacion(11,5) / Combinacion(50,5)))*100;
                 
-                return ReducirNumero(colorProbability);
+                return colorProbability;
             }
             
            
@@ -115,7 +113,7 @@ namespace Library
             }
             else
             {
-                resultFull = ((11*Combinacion(4,3) * Combinacion(4,2))/Combinacion(50,5) + (Combinacion(2,1) * Combinacion(12,2)*4 * Combinacion(47,2))/Combinacion(50,5) + (Combinacion(12,3)*Combinacion(47,2))/ Combinacion(50,5))*100;
+                resultFull = ((2 * Combinacion(26, 5)) / Combinacion(50, 5) + 11*Combinacion(4,3) * Combinacion(4,2)/Combinacion(50,5) + Combinacion(2,1) * Combinacion(12,2)*4 * Combinacion(47,2)/Combinacion(50,5) + Combinacion(12,3)*Combinacion(47,2)/ Combinacion(50,5))*100;
                 return ReducirNumero(resultFull);
             }
         
@@ -133,8 +131,8 @@ namespace Library
             string[] splitCard2 = cardToCalculate2.Split(" ");
             string numC1 = splitCard1[0];
             string numC2 = splitCard2[0];
-            //string paloC1 = splitCard1[1];
-            //string paloC2 = splitCard2[1];
+            string paloC1 = splitCard1[1];
+            string paloC2 = splitCard2[1];
             /*
             bool mismoPalo;
             if(paloC1 == paloC2) // realizo esto para saber si son del mismo palo
@@ -156,7 +154,7 @@ namespace Library
         
             foreach (var card in escaleraReal)
             {
-                if(numC1 == card || numC2 == card)
+                if((numC1 == card || numC2 == card) && (paloC1 == paloC2))
                 {
                     di ++;
                     if (di == 2)
