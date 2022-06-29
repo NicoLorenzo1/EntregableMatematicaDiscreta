@@ -48,17 +48,14 @@ namespace Library
             {
                 
                 colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
-                return ReducirNumero(colorProbability);
-                     
+                return ReducirNumero(colorProbability);        
             }
             else
             {
                 colorProbability = ( 2 * (Combinacion(26, 5) / Combinacion(50, 5)) + (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) +( Combinacion(11,5) / Combinacion(50,5)))*100;
                 
-                return colorProbability;
+                return ReducirNumero(colorProbability);
             }
-            
-           
         }
 
         //Metodo que se encarga de calcular la probabilidad de que salga poker, separa el string recibido y a partir de lo que busca (numeros en este caso) calcula las probabilidades.
@@ -133,17 +130,7 @@ namespace Library
             string numC2 = splitCard2[0];
             string paloC1 = splitCard1[1];
             string paloC2 = splitCard2[1];
-            /*
-            bool mismoPalo;
-            if(paloC1 == paloC2) // realizo esto para saber si son del mismo palo
-            {
-                mismoPalo = true;
-            }
-            else
-            {
-                mismoPalo = false; 
-            }
-            */
+            
             int ni = 0; // ni = no iguales para saber que los numeros de input no son iguales
             int s1 = 0; // s1 = para saber que solo el primero es igual
             int s2 = 0; // s2 = para saber que el segundo es igual
@@ -154,14 +141,30 @@ namespace Library
         
             foreach (var card in escaleraReal)
             {
-                if((numC1 == card || numC2 == card) && (paloC1 == paloC2))
+                if((numC1 == card || numC2 == card) && (paloC1 == paloC2))//cuando son distinto valor y igual palo 
                 {
                     di ++;
                     if (di == 2)
                     {
-                        escaleraProbability = Combinacion(47,2)/Combinacion(50,2)*100;
+                        escaleraProbability = ((3 / Combinacion(50,5)) + (Combinacion(47,2)/Combinacion(50,5)))* 100;
                         return ReducirNumero(escaleraProbability);
                     }
+                }
+                else if((numC1 == card || numC2 == card) && (paloC1 != paloC2) )// cuando son distinto palo y pertenecen a una escalera
+                {
+                    if(numC1 == numC2)//  Esto es para cuando son de valor igual
+                    {
+                        escaleraProbability = ((2/Combinacion(50,5)) + (2*46/Combinacion(50,5)))*100; //  Esto es para cuando son de valor igual
+                        return ReducirNumero(escaleraProbability);
+                    }
+                    s2++;
+                    if(s2 == 2)// Esto para cuando son de valor distinto
+                    {
+                        escaleraProbability = ((2/Combinacion(50,5)) + (2*46/Combinacion(50,5)))*100; 
+                        return ReducirNumero(escaleraProbability);
+
+                    }
+
                 }
             }
 
@@ -173,35 +176,23 @@ namespace Library
                     ni ++;
                     if(ni == 5)
                     {
-                        escaleraProbability = 4/ Combinacion(50,2)*100; // para cuando los dos no sirven
+                        escaleraProbability = (4/ Combinacion(50,5))*100; // para cuando los dos primeros no sirven ESTA PERFECT ANO TOCAR
                         return ReducirNumero(escaleraProbability);
                     }  
                 }
-                else if(numC1 == card && numC2 != card)
+                else if((numC1 == card && numC2 != card) || (numC1 != card && numC2 == card))
                 {
                     s1 ++;
                     if(s1 == 1)
                     {
-                        escaleraProbability = 46/Combinacion(50,5) * 100; //para cuando tenemos una que sirve y otra no.
+                        escaleraProbability =  ((3/Combinacion(50,5) ) +  46/Combinacion(50,5))*100 ; //para cuando tenemos una que sirve y otra no.
                         return ReducirNumero(escaleraProbability);
                     }
+                    
                 }
-                else if(numC1 != card && numC2 == card)
-                {
-                    s2 ++;
-                    if(s2 == 1)
-                    {
-                        escaleraProbability = 46/Combinacion(50,5) * 100;
-                        return ReducirNumero(escaleraProbability);
-                    }
-                }
-                else if(numC1 == card && numC2 == card)
-                {
-                    escaleraProbability = Combinacion(47,2)/Combinacion(50,5)*100;
-                    return ReducirNumero(escaleraProbability);
-                }
+                
             }
-            return ReducirNumero(escaleraProbability);;
+            return escaleraProbability;
         
         }
 
@@ -210,7 +201,7 @@ namespace Library
             string numeroStr = numero.ToString();
             string strNew ="";
             
-            for (int i = 0; i < 5; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
+            for (int i = 0; i < 7; i++)  // todo esto del for es para escribir la probabilidad linda "x,xx" 
             {
                 strNew +=numeroStr[i];
             }
