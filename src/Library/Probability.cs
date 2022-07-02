@@ -45,12 +45,12 @@ namespace Library
             if(paloC1 != paloC2)
             {
                 
-                colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(26, 5)/Combinacion(50, 5))*100;
+                colorProbability = (2 * ((Combinacion(12, 4) * 38) + Combinacion(12, 5))/Combinacion(50, 5) + 2 * Combinacion(13, 5)/Combinacion(50, 5))*100;
                 return ReducirNumero(colorProbability);        
             }
             else
             {
-                colorProbability = ( 2 * (Combinacion(26, 5) / Combinacion(50, 5)) + (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) +( Combinacion(11,5) / Combinacion(50,5)))*100;
+                colorProbability = ( 2 * (Combinacion(13, 5) / Combinacion(50, 5)) + (Combinacion(11,3)*Combinacion(39,2))/Combinacion(50,5) + (Combinacion(11,4)*39)/Combinacion(50,5) +( Combinacion(11,5) / Combinacion(50,5)))*100;
                 
                 return ReducirNumero(colorProbability);
             }
